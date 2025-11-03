@@ -87,3 +87,7 @@ Authorization: Bearer {token_value}`
 ## Unit Tests
 
 Run the Unit Tests located inside the test project **BlsApi.Tests**
+
+## Docker Setup
+
+TODO: create a .docker file and setup the application to run from a docker image running asp.net core.
