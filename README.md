@@ -37,7 +37,7 @@ This API will assume the user is to provide the following 3 inputs:
 - Month - a string value representing the full month name
  (eg. January, March, October, December)
 
- The output will be a single record containing the CLI value for the given month and year as an integer with any notes (footnotes) found in the data.
+ The output will be a single record containing the CLI value for the given month and year as an integer with any notes (footnotes) found in thed data.
 
  `{
     ValueAsInt,
@@ -52,6 +52,10 @@ This API will assume the user is to provide the following 3 inputs:
 
 We are caching each call for the specified seriesID for 24 hours using ASP.NET's built-in InMemoryCache which operates as a Singleton.
 
+We developed two end-points that effectively execute the same code. One end-point requires the Request to have a JWT token added to the Request header "/api/blsauth/{seriesId}/{year}/{month}" and the other doesn't "/api/bls/{seriesId}/{year}/{month}".
+
+Simple validation is done on the input such as ensuring the seriesId is not an empty string, year is a 4 digit year and month is the fully spelled out month. Not all of the data at BLS uses the fully spelled out month so this validation would need to change should other seriesID's wish to be queried for. For example, sometimes the periodName field (which contains the fully name of the month) will say things like "1st Quarter" or "Annual". However, based on the requirements specified in the Task description, we are assuming a full month name so our validation reflects that (as well as the unit tests).
+
 ## Installation and Execution
 
  - Download all of the code from GitHub
@@ -59,6 +63,26 @@ We are caching each call for the specified seriesID for 24 hours using ASP.NET's
  - Run the web application using Visual Studio and IIS Express (eg. F5).
  - The Swagger page will load.
  - Use the POST Login to generate a JWT token that you can copy and paste into the CPIService.http file for testing the rest of the API's.
+ - Example http requests shown below
+ 
+
+`GET https://localhost:44371/api/bls/LAUCN040010000000005/2025/February`
+
+// example showing validation with bad year and month
+
+`GET https://localhost:44371/api/bls/LAUCN040010000000005/24/M01`
+
+
+// Authorization / Authentication via JWT
+
+`GET https://localhost:44371/api/blsauth/LAUCN040010000000005/2025/August
+Authorization: Bearer {token_value}`
+
+// example showing validation with authentication (bad year and month)
+
+`GET https://localhost:44371/api/blsauth/LAUCN040010000000005/24/M01
+Authorization: Bearer {token_value}`
+
 
 ## Unit Tests
 

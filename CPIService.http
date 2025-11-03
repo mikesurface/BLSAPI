@@ -1,9 +1,11 @@
 @CPIService_HostAddress = https://localhost:44371
 
 
+# example good call
 GET {{CPIService_HostAddress}}/api/bls/LAUCN040010000000005/2025/February
 ###
 
+# example showing validation
 GET {{CPIService_HostAddress}}/api/bls/LAUCN040010000000005/24/M01
 ###
 
@@ -12,6 +14,7 @@ GET {{CPIService_HostAddress}}/api/blsauth/LAUCN040010000000005/2025/August
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RyaW5nIiwiZXhwIjoxNzYyMTg2NTYwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdC9NeUJsc0NQSUFwcCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0L015QmxzQ1BJQXBwIn0.7D12P2mk_kwWdw6EniCelSYvpX5DfaXssPUmQXvzzPM
 ###
 
-GET {{CPIService_HostAddress}}/api/bls/LAUCN040010000000005/24/M01
+# example showing validation with authentication
+GET {{CPIService_HostAddress}}/api/blsauth/LAUCN040010000000005/24/M01
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3RyaW5nIiwiZXhwIjoxNzYyMTg2NTYwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdC9NeUJsc0NQSUFwcCIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0L015QmxzQ1BJQXBwIn0.7D12P2mk_kwWdw6EniCelSYvpX5DfaXssPUmQXvzzPM
 ###
