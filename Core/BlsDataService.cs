@@ -21,8 +21,8 @@ namespace CPIService.Core
 
         public async Task<BlsApiResponse> GetBlsDataAsync(string seriesId)
         {
-            // todo: put this in a configuration setting
-            string apiUrl = $"https://api.bls.gov/publicAPI/v1/timeseries/data/{seriesId}";
+            var blsUri = AppSettings["BlsUri"];
+            string apiUrl = $"{blsUri}/{seriesId}";
 
             // first, try to pull the data out of our in-memory cache
             if (_cache.TryGetValue(seriesId, out BlsApiResponse cachedData))
